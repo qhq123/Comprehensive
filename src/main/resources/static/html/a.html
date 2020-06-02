@@ -1,0 +1,701 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>订购系统</title>
+    <link rel="stylesheet" href="../css/a/a1main.css">
+    <link rel="stylesheet" href="../css/a/a1cssreset.css">
+    <link rel="stylesheet" href="../css/a/a2modernforms.css">
+    <link rel="stylesheet" href="../css/a/a2font-awesome.min.css">
+    <link rel="stylesheet" href="../css/a/a2button1.css">
+    <link rel="stylesheet" type="text/css" href="../css/a/a3styles.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../css/a/a3demo.css" media="all" />
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/a/a.js"></script>
+    <script type="text/javascript" src="../js/a/a2.js"></script>
+    <script type="text/javascript" src="../js/a/a-editd.js"></script>
+    <script type="text/javascript" src="../js/a/a-selecttable.js"></script>
+    <style>
+        .nav {
+            overflow: hidden;
+            text-align: center;
+            background-color: #4b4b4b;
+        }
+        .nav li {
+            float: left;
+            padding: 5px;
+            width: 24%;
+            color: #aaaaaa;
+            list-style: none;
+            border-left: 1px solid #f4f4f4;
+            cursor: pointer;
+        }
+        .nav li:hover,.selected {
+            background-color:#ecebeb;
+            border-left: 1px solid #ecebeb;
+        }
+        .content{
+            border: 1px solid #f4f4f4;
+            height: 100%;
+            padding: 10px;
+            overflow: hidden;
+        }
+        body {text-align: center;}
+    </style>
+</head>
+<body>
+<ul class="nav">
+    <li class="selected">教材库</li>
+    <li>购买教材</li>
+    <li>订书单</li>
+    <li>领书单</li>
+</ul>
+<div class="content" style="overflow-y:auto">
+    <div class="list" >
+        <div>
+            <nav>
+                <div class="all">
+                    <a href="#">全部学科分类</a>
+                </div>
+                <ul>
+                    <li class="nav_item"><a href="#">哲学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu1">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#a0101">哲学</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">经济学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu2">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#b0101">应用经济学</a>
+                                        <a href="#b0201">理论经济学</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">法学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu3">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#c0101">马克思主义理论</a>
+                                        <a href="#c0201">民族学</a>
+                                        <a href="#c0301">社会学</a>
+                                        <a href="#">政治学</a>
+                                        <a href="#">法学</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">教育学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu4">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#d0101">体育学</a>
+                                        <a href="#d0201">心理学</a>
+                                        <a href="#d0301">教育学</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">文学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu5">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#e0101">艺术学</a>
+                                        <a href="#e0201">新闻传播学</a>
+                                        <a href="#e0301">外国语言文学学</a>
+                                        <a href="#">中国语言文学学</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">历史学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu6">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#f0101">历史学</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">理学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu7">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#g0101">数学</a>
+                                        <a href="#g0201">物理学</a>
+                                        <a href="#g0301">化学</a>
+                                        <a href="#">天文学</a>
+                                        <a href="#">地理学</a>
+                                        <a href="#">大气科学</a>
+                                        <a href="#">海洋科学</a>
+                                        <a href="#">地球物理学</a>
+                                        <a href="#">地质学</a>
+                                        <a href="#">生物学</a>
+                                        <a href="#">系统科学</a>
+                                        <a href="#">科学技术史</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">工学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu8">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#h0101">力学</a>
+                                        <a href="#h0201">机械工程</a>
+                                        <a href="#h0301">光学工程</a>
+                                        <a href="#">仪器科学与技术</a>
+                                        <a href="#">材料科学与工程</a>
+                                        <a href="#">冶金工程</a>
+                                        <a href="#">动力工程及工程热物理</a>
+                                        <a href="#">电气工程</a>
+                                        <a href="#">电子科学与技术</a>
+                                        <a href="#">信息与通信工程</a>
+                                        <a href="#">控制科学与工程</a>
+                                        <a href="#">计算机科学与技术</a>
+                                        <a href="#">建筑学</a>
+                                        <a href="#">土木工程</a>
+                                        <a href="#">水利工程</a>
+                                        <a href="#">测绘科学与技术</a>
+                                        <a href="#">化学工程与技术</a>
+                                        <a href="#">地址资源与地质工程</a>
+                                        <a href="#">矿业工程</a>
+                                        <a href="#">石油与天然气工程</a>
+                                        <a href="#">纺织科学与工程</a>
+                                        <a href="#">轻工技术与工程</a>
+                                        <a href="#">交通运输工程</a>
+                                        <a href="#">船舶与海洋工程</a>
+                                        <a href="#">航空宇航科学与技术</a>
+                                        <a href="#">兵器科学与技术</a>
+                                        <a href="#">核科学与技术</a>
+                                        <a href="#">农业工程</a>
+                                        <a href="#">林业工程</a>
+                                        <a href="#">环境科学与工程</a>
+                                        <a href="#">生物医学工程</a>
+                                        <a href="#">食品科学与工程</a>
+                                        <a href="#"></a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">农学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu9">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#i0101">作物学</a>
+                                        <a href="#i0201">园艺学</a>
+                                        <a href="#i0301">农业资源利用</a>
+                                        <a href="#">植物保护</a>
+                                        <a href="#">畜牧学</a>
+                                        <a href="#">兽医学</a>
+                                        <a href="#">林学</a>
+                                        <a href="#">水产</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">医学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu10">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#j0101">基础医学</a>
+                                        <a href="#j0201">临床医学</a>
+                                        <a href="#j0301">口腔医学</a>
+                                        <a href="#">公共卫生与预防医学</a>
+                                        <a href="#">中医学</a>
+                                        <a href="#">中西医结合</a>
+                                        <a href="#">药学</a>
+                                        <a href="#">中药学</a>
+                                        <a href="#"></a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">军事学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu11">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#k0101">军事思想及军事历史</a>
+                                        <a href="#k0201">战略学</a>
+                                        <a href="#k0301">战役学</a>
+                                        <a href="#">战术学</a>
+                                        <a href="#">军队指挥学</a>
+                                        <a href="#">军制学</a>
+                                        <a href="#">军队政治工作学</a>
+                                        <a href="#">军事后勤学与军事装备学</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav_item"><a href="#">管理学类</a><span class="jt">&gt;</span>
+                        <div class="sub_menu12">
+                            <div class="leftmenu">
+                                <dl>
+                                    <dd>
+                                        <a href="#l0101">管理科学与工程</a>
+                                        <a href="#l0201">工商管理</a>
+                                        <a href="#l0301">农林经济管理</a>
+                                        <a href="#">公共管理</a>
+                                        <a href="#">图书馆、情报与档案管理</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="right-content">
+            <table align="center" border="0" id="table1" style="border-collapse:separate; border-spacing:0px 20px";>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="a0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="a0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="b0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="b0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="b0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="b0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="c0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="c0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="c0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="c0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="c0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="c0302">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="d0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="d0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="d0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="d0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="d0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="d0302">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="e0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="e0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="e0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="e0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="e0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="e0302">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="f0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="f0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="g0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="g0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="g0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="g0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="g0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="g0302">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="h0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="h0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="h0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="h0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="h0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="h0302">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="i0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="i0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="i0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="i0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="i0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="i0302">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="j0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="j0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="j0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="j0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="j0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="j0302">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="k0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="k0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="k0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="k0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="k0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="k0302">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="l0101">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="l0102">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="l0201">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="l0202">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="l0301">
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table border="0" align="center" id="l0302">
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="list">
+        <div class="modern-forms">
+            <div class="modern-container">
+                <form>
+                    <fieldset>
+                        <div class="form-row">
+                            <div class="col col-6">
+                                <div class="field-group prepend-icon">
+                                    <input type="text" class="mdn-input" placeholder="输入书号" id="a2num">
+                                    <label class="mdn-label">书号</label>
+                                    <span class="mdn-bar"></span>
+                                </div>
+                            </div><!-- end col-6 -->
+                            <div class="col col-6">
+                                <div class="field-group prepend-icon">
+                                    <input type="text" class="mdn-input" placeholder="输入数量" id="a2count">
+                                    <label class="mdn-label">数量</label>
+                                    <span class="mdn-bar"></span>
+                                </div>
+                            </div><!-- end col-6 -->
+                        </div><!-- end form-row -->
+                    </fieldset>
+
+                    <div class="mdn-footer">
+                        <button type="button" class="bttn-slant bttn-md bttn-default" onclick="a2buybook()">购买</button>
+                        <button type="reset" class="bttn-slant bttn-md bttn-default"  onclick="a2clean()">清空</button>
+                    </div>
+                </form>
+            </div><!-- modern-contai -->
+    </div>
+    </div>
+
+    <div  class="list">
+        <div id="fdw-pricing-table1">
+
+        </div>
+    </div>
+
+    <div  class="list">
+        <div id="fdw-pricing-table2">
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
