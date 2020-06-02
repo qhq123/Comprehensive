@@ -93,23 +93,27 @@ function edittda4(result)
     var obj = eval('(' + result + ')');
     html1 ="";
     for (i = 0; i < obj.length; i++) {
-        var takeid=obj[i].takeid;
-        var buyerid=obj[i].buyerid;
-        var takedate=obj[i].takedate;
-        var buyid=obj[i].buyid;
-        var buydate=obj[i].buydate;
-        var sellerid=obj[i].sellerid;
-        html1+="<div class=\"plan plan3\">\n" +
-            "                <div class=\"header\">"+""+"</div>\n" +
-            "                <ul>\n" +
-            "                    <li><b>领书单号</b> "+takeid+"</li>\n"+
-            "                    <li><b>订购者编号</b> "+buyerid+"</li>\n" +
-            "                    <li><b>领书日期</b> "+takedate+"</li>\n" +
-            "                    <li><b>购书单号</b> "+buyid+"</li>\n" +
-            "                    <li><b>购书日期</b> "+buydate+"</li>\n" +
-            "                    <li><b>经办人</b> "+sellerid+"</li>\n" +
-            "                </ul>\n" +
-            "            </div>";
+        var takestatu=obj[i].takestatu;
+        if(takestatu==0)
+        {
+            var takeid=obj[i].takeid;
+            var buyerid=obj[i].buyerid;
+            var takedate=obj[i].takedate;
+            var buyid=obj[i].buyid;
+            var buydate=obj[i].buydate;
+            var sellerid=obj[i].sellerid;
+            html1+="<div class=\"plan plan3\">\n" +
+                "                <div class=\"header\">"+""+"</div>\n" +
+                "                <ul>\n" +
+                "                    <li><b>领书单号</b> "+takeid+"</li>\n"+
+                "                    <li><b>订购者编号</b> "+buyerid+"</li>\n" +
+                "                    <li><b>领书日期</b> "+takedate+"</li>\n" +
+                "                    <li><b>购书单号</b> "+buyid+"</li>\n" +
+                "                    <li><b>购书日期</b> "+buydate+"</li>\n" +
+                "                    <li><b>经办人</b> "+sellerid+"</li>\n" +
+                "                </ul>\n" +
+                "            </div>";
+        }
 
     }
     document.getElementById("fdw-pricing-table2").innerHTML=html1;//动态写入html代码

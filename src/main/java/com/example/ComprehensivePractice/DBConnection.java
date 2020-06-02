@@ -343,6 +343,7 @@ public class DBConnection {
                 obj.put("buyid",rs.getString(4));
                 obj.put("buydate",rs.getString(5));
                 obj.put("sellerid",rs.getString(6));
+                obj.put("takestatu",rs.getString(7));
                 result.add(obj);
                 //System.out.println(obj.toJSONString());
             }
