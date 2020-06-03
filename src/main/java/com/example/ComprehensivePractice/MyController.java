@@ -12,9 +12,13 @@ public class MyController {
     }
 
     @RequestMapping("/a")
-    public String a(){
-        return "html/a.html";
-    }
+    public String a(){ return "html/a.html"; }
+
+    @RequestMapping("/b")
+    public String b(){ return "html/b.html"; }
+
+    @RequestMapping("/c")
+    public String c(){ return "html/c.html"; }
 
     @RequestMapping("/a2success")
     public String success(){

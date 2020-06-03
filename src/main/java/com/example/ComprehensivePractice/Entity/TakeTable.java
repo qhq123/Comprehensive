@@ -5,10 +5,10 @@ import com.example.ComprehensivePractice.DBConnection;
 
 public class TakeTable {
 
-    public JSONArray dobooktake()
+    public JSONArray dobooktake(String orderid,String sellerid,String takedate,String bookid,String count)
     {
         DBConnection d=new DBConnection();
-        JSONArray statu = null;
+        JSONArray statu=d.insertbooktake(orderid,sellerid,takedate,bookid,count);
         return statu;
     }
 

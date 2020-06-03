@@ -85,6 +85,11 @@ function edittda3(result)
             "            </div>";
 
     }
+    if (html1=="")
+        html1= "                <div>"+""+"</div>\n" +
+            "                <ul>\n" +
+            "                    <h2>暂无已订书单！</h2>\n"
+    "                </ul>\n";
     document.getElementById("fdw-pricing-table1").innerHTML=html1;//动态写入html代码
 }
 
@@ -93,8 +98,8 @@ function edittda4(result)
     var obj = eval('(' + result + ')');
     html1 ="";
     for (i = 0; i < obj.length; i++) {
-        var takestatu=obj[i].takestatu;
-        if(takestatu==0)
+        var statu=obj[i].statu;
+        if(statu==0)
         {
             var takeid=obj[i].takeid;
             var buyerid=obj[i].buyerid;
@@ -116,5 +121,10 @@ function edittda4(result)
         }
 
     }
+    if (html1=="")
+        html1= "                <div>"+""+"</div>\n" +
+            "                <ul>\n" +
+            "                    <h2>暂无未领书单！</h2>\n"
+            "                </ul>\n";
     document.getElementById("fdw-pricing-table2").innerHTML=html1;//动态写入html代码
 }
