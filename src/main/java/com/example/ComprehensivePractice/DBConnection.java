@@ -499,18 +499,15 @@ public class DBConnection {
             connectionProps.put("password", "qhq123456");
             connection = (Connection) DriverManager.getConnection(url, connectionProps);
             statement = (Statement) connection.createStatement();
-            String query = "select * from 领书单";
+            String query = "select * from 缺书单";
             //System.out.println(query);
             rs = statement.executeQuery(query);
             while (rs.next()) {
                 JSONObject obj=new JSONObject();
-                obj.put("takeid",rs.getString(1));
-                obj.put("buyerid",rs.getString(2));
-                obj.put("takedate",rs.getString(3));
-                obj.put("buyid",rs.getString(4));
-                obj.put("buydate",rs.getString(5));
-                obj.put("sellerid",rs.getString(6));
-                obj.put("takestatu",rs.getString(7));
+                obj.put("lakeid",rs.getString(1));
+                obj.put("bookid",rs.getString(2));
+                obj.put("lakecount",rs.getString(3));
+                obj.put("statu",rs.getString(4));
                 result.add(obj);
                 //System.out.println(obj.toJSONString());
             }
