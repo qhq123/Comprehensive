@@ -90,6 +90,7 @@ public class Unit {
 
         result = db.selectordertable("a2");
         System.out.println(result);
+        //0
         t1 = result.getJSONObject(0).getString("orderid");
         t2 = result.getJSONObject(0).getString("bookid");
         t3 = result.getJSONObject(0).getString("buydate");
@@ -103,6 +104,7 @@ public class Unit {
         Assert.assertEquals("1",t5);
         Assert.assertEquals("70.20",t6);
 
+        //1
         t1 = result.getJSONObject(1).getString("orderid");
         t2 = result.getJSONObject(1).getString("bookid");
         t3 = result.getJSONObject(1).getString("buydate");
@@ -137,7 +139,7 @@ public class Unit {
         Assert.assertEquals("0",t1);
         Assert.assertEquals("a2",t2);
         Assert.assertEquals("2020-06-01",t3);
-        Assert.assertEquals("20200601180550a1",t4);
+        Assert.assertEquals("20200601180550a2",t4);
         Assert.assertEquals("2020-06-01",t5);
         Assert.assertEquals("b1",t6);
     }
