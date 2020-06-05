@@ -77,7 +77,7 @@ function selectlacktable() {
         }
     }
     //3.建立与服务器的连接
-    xhr.open("POST","LakeTableServlet",true);
+    xhr.open("POST","LackTableServlet",true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
 }

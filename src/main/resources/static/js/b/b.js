@@ -1,5 +1,6 @@
-function b23clean() {
-
+function b3clean() {
+    $("#b3num").val('');
+    $("#b3count").val('');
 }
 
 $(function(){//切换标签页
@@ -17,7 +18,7 @@ $(function(){//切换标签页
             $(divShow[index]).show();
             //索引对应的div块的同胞隐藏
             $(divShow[index]).siblings('.list').hide();
-            if(index==1) b23clean();
+            if(index==2) b3clean();
         }
     });
 });

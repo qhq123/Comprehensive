@@ -338,8 +338,10 @@ public class DBConnection {
             connectionProps.put("password", "qhq123456");
             connection = (Connection) DriverManager.getConnection(url, connectionProps);
             statement = (Statement) connection.createStatement();
-            String query = "select * from 领书单 where 订购者编号="+"'"+userid+"'";
-            //System.out.println(query);
+            String query = "";
+            if(userid.equals("anyone"))query = "select * from 领书单";
+            else query = "select * from 领书单 where 订购者编号="+"'"+userid+"'";
+            //Syustem.out.println(query);
             rs = statement.executeQuery(query);
             while (rs.next()) {
                 JSONObject obj=new JSONObject();
@@ -483,7 +485,63 @@ public class DBConnection {
         }
         return result;
     }
-    public JSONArray selectlaketable()
+    public JSONArray updatetake(String buyid)
+    {
+        JSONArray result = new JSONArray();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            //adb_url是AnalyticDB for MySQL集群的连接地址URL，可以在控制台的集群信息页面获取连接URL，3306是端口号。
+            //db_name是AnalyticDB for MySQL集群中的数据库名称。
+            String url = "jdbc:mysql://120.78.226.183:3306/1?useSSL=false&autoReconnect=true&failOverReadOnly=false" +
+                    "&useUnicode=true&characterEncoding=UTF-8";
+            Properties connectionProps = new Properties();
+            //account_name是AnalyticDB for MySQL集群中的用户账号：高权限账号或者普通账号。
+            connectionProps.put("user", "root");
+            //account_password是AnalyticDB for MySQL集群中用户账号对应的密码。
+            connectionProps.put("password", "qhq123456");
+            connection = (Connection) DriverManager.getConnection(url, connectionProps);
+            statement = (Statement) connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            String query3 = "update 领书单 set 是否领书="+1+" where 购书单号="+"'"+buyid+"'";
+            //System.out.println(query3);
+            int res3 = statement.executeUpdate(query3);
+            String query4 = "update 订购单 set 是否处理="+2+" where 购书单号="+"'"+buyid+"'";
+            //System.out.println(query3);
+            int res4 = statement.executeUpdate(query4);
+            JSONObject obj=new JSONObject();
+            obj.put("statu","ok");
+            //System.out.println(obj.toJSONString());
+            result.add(obj);
+        }
+        catch(SQLException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+    public JSONArray selectlacktable()
     {
         JSONArray result = new JSONArray();
         try {
@@ -504,16 +562,116 @@ public class DBConnection {
             rs = statement.executeQuery(query);
             while (rs.next()) {
                 JSONObject obj=new JSONObject();
-                obj.put("lakeid",rs.getString(1));
+                obj.put("lackid",rs.getString(1));
                 obj.put("bookid",rs.getString(2));
-                obj.put("lakecount",rs.getString(3));
-                obj.put("statu",rs.getString(4));
+                obj.put("lackcount",rs.getString(3));
+                obj.put("statu",rs.getInt(4));
                 result.add(obj);
                 //System.out.println(obj.toJSONString());
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+    public JSONArray insertbooklack(String bookid,String count)
+    {
+        JSONArray result = new JSONArray();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            //adb_url是AnalyticDB for MySQL集群的连接地址URL，可以在控制台的集群信息页面获取连接URL，3306是端口号。
+            //db_name是AnalyticDB for MySQL集群中的数据库名称。
+            String url = "jdbc:mysql://120.78.226.183:3306/1?useSSL=false&autoReconnect=true&failOverReadOnly=false" +
+                    "&useUnicode=true&characterEncoding=UTF-8";
+            Properties connectionProps = new Properties();
+            //account_name是AnalyticDB for MySQL集群中的用户账号：高权限账号或者普通账号。
+            connectionProps.put("user", "root");
+            //account_password是AnalyticDB for MySQL集群中用户账号对应的密码。
+            connectionProps.put("password", "qhq123456");
+            connection = (Connection) DriverManager.getConnection(url, connectionProps);
+            statement = (Statement) connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            String query = "select * from 教材信息 where 书号="+"'"+bookid+"'";
+            float flocount=Float.parseFloat(count);
+            if(flocount<=0)
+            {
+                JSONObject obj=new JSONObject();
+                obj.put("statu","wc2");
+                //System.out.println(obj.toJSONString());
+                result.add(obj);
+            }
+            else
+            {
+                //System.out.println(query);
+                rs = statement.executeQuery(query);
+                rs.last();
+                int row=rs.getRow();
+                //System.out.println(row);
+                rs.beforeFirst();
+                //row=rs.getRow();
+                //System.out.println(row);
+                if(row==0)
+                {
+                    JSONObject obj=new JSONObject();
+                    obj.put("statu","wn");
+                    //System.out.println(obj.toJSONString());
+                    result.add(obj);
+                }
+                else
+                {
+                    String insertlack="",insertbookid="",insertcount="";
+                    insertbookid=bookid;
+                    Date date=new Date();
+                    insertcount= count;
+                    insertlack= new SimpleDateFormat("yyyyMMddHHmmss").format(date)+insertbookid;
+                    while (rs.next()) {
+                        JSONObject obj=new JSONObject();
+                        obj.put("statu","t");
+                        //System.out.println(obj.toJSONString());
+                        result.add(obj);
+                    }
+                    String query2 = "insert into 缺书单 values("+"'"+insertlack+"'"+","+"'"+insertbookid+"'"+","+"'"+insertcount+"'"+","+0+")";
+                    System.out.println(query2);
+                    int res = statement.executeUpdate(query2);
+                }
+            }
+        }
+        catch(NumberFormatException e)
+        {
+
+            JSONObject obj=new JSONObject();
+            obj.put("statu","wc1");
+            System.out.println(obj.toJSONString());
+            result.add(obj);
+            return result;
+        }
+        catch(SQLException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
             if (rs != null) {
                 try {
                     rs.close();

@@ -17,4 +17,10 @@ public class TakeTable {
         JSONArray tableinf=d.selecttaketable(userid);
         return tableinf;
     }
+
+    public JSONArray confirmtake(String buyid) {
+        DBConnection d=new DBConnection();
+        JSONArray statu=d.updatetake(buyid);
+        return statu;
+    }
 }
