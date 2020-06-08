@@ -17,4 +17,9 @@ public class LackTable {
         JSONArray tableinf=d.selectlacktable();
         return tableinf;
     }
+    public JSONArray confirmlack(String lackid,String bookid,String lackcount) {
+        DBConnection d=new DBConnection();
+        JSONArray statu=d.updatelack(lackid,bookid,lackcount);
+        return statu;
+    }
 }

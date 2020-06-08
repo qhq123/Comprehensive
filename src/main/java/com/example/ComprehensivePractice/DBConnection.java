@@ -696,4 +696,221 @@ public class DBConnection {
         }
         return result;
     }
+    public JSONArray updatelack(String lackid,String bookid,String lackcount)
+    {
+        JSONArray result = new JSONArray();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            //adb_url是AnalyticDB for MySQL集群的连接地址URL，可以在控制台的集群信息页面获取连接URL，3306是端口号。
+            //db_name是AnalyticDB for MySQL集群中的数据库名称。
+            String url = "jdbc:mysql://120.78.226.183:3306/1?useSSL=false&autoReconnect=true&failOverReadOnly=false" +
+                    "&useUnicode=true&characterEncoding=UTF-8";
+            Properties connectionProps = new Properties();
+            //account_name是AnalyticDB for MySQL集群中的用户账号：高权限账号或者普通账号。
+            connectionProps.put("user", "root");
+            //account_password是AnalyticDB for MySQL集群中用户账号对应的密码。
+            connectionProps.put("password", "qhq123456");
+            connection = (Connection) DriverManager.getConnection(url, connectionProps);
+            statement = (Statement) connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            /*String query11 = "select * from 教材信息 where 书号="+"'"+bookid+"'";
+            rs = statement.executeQuery(query11);
+            int store=0;
+            while (rs.next())
+            {
+                store= rs.getInt(8);
+            }*/
+            String query3 = "update 缺书单 set 是否处理="+1+" where 缺书单号="+"'"+lackid+"'";
+            //System.out.println(query3);
+            int res3 = statement.executeUpdate(query3);
+            //String query4 = "update 教材信息 set 库存="+(store+Integer.parseInt(lackcount))+" where 书号="+"'"+bookid+"'";
+            //int res4 = statement.executeUpdate(query4);
+            JSONObject obj=new JSONObject();
+            obj.put("statu","ok");
+            //System.out.println(obj.toJSONString());
+            result.add(obj);
+        }
+        catch(SQLException | ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+    public JSONArray selectintable()
+    {
+        JSONArray result = new JSONArray();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            //adb_url是AnalyticDB for MySQL集群的连接地址URL，可以在控制台的集群信息页面获取连接URL，3306是端口号。
+            //db_name是AnalyticDB for MySQL集群中的数据库名称。
+            String url = "jdbc:mysql://120.78.226.183:3306/1?useSSL=false&autoReconnect=true&failOverReadOnly=false" +
+                    "&useUnicode=true&characterEncoding=UTF-8";
+            Properties connectionProps = new Properties();
+            //account_name是AnalyticDB for MySQL集群中的用户账号：高权限账号或者普通账号。
+            connectionProps.put("user", "root");
+            //account_password是AnalyticDB for MySQL集群中用户账号对应的密码。
+            connectionProps.put("password", "qhq123456");
+            connection = (Connection) DriverManager.getConnection(url, connectionProps);
+            statement = (Statement) connection.createStatement();
+            String query = "select * from 进书单";
+            //System.out.println(query);
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+                JSONObject obj=new JSONObject();
+                obj.put("inid",rs.getString(1));
+                obj.put("bookid",rs.getString(2));
+                obj.put("inerid",rs.getString(3));
+                obj.put("indate",rs.getString(4));
+                obj.put("incount",rs.getString(5));
+                obj.put("inprice",rs.getString(6));
+                result.add(obj);
+                //System.out.println(obj.toJSONString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+    public JSONArray insertbookin(String bookid, String incount,String inerid) {
+        JSONArray result = new JSONArray();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            //adb_url是AnalyticDB for MySQL集群的连接地址URL，可以在控制台的集群信息页面获取连接URL，3306是端口号。
+            //db_name是AnalyticDB for MySQL集群中的数据库名称。
+            String url = "jdbc:mysql://120.78.226.183:3306/1?useSSL=false&autoReconnect=true&failOverReadOnly=false" +
+                    "&useUnicode=true&characterEncoding=UTF-8";
+            Properties connectionProps = new Properties();
+            //account_name是AnalyticDB for MySQL集群中的用户账号：高权限账号或者普通账号。
+            connectionProps.put("user", "root");
+            //account_password是AnalyticDB for MySQL集群中用户账号对应的密码。
+            connectionProps.put("password", "qhq123456");
+            connection = (Connection) DriverManager.getConnection(url, connectionProps);
+            statement = (Statement) connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            int store=0;
+            String query = "select * from 教材信息 where 书号=" + "'" + bookid + "'";
+            float flocount = Float.parseFloat(incount);
+            if (flocount <= 0) {
+                JSONObject obj = new JSONObject();
+                obj.put("statu", "wc2");
+                //System.out.println(obj.toJSONString());
+                result.add(obj);
+            } else {
+                //System.out.println(query);
+                rs = statement.executeQuery(query);
+                rs.last();
+                int row = rs.getRow();
+                //System.out.println(row);
+                rs.beforeFirst();
+                //row=rs.getRow();
+                //System.out.println(row);
+                if (row == 0) {
+                    JSONObject obj = new JSONObject();
+                    obj.put("statu", "wn");
+                    //System.out.println(obj.toJSONString());
+                    result.add(obj);
+                } else {
+                    String insertinid = "", insertbookid = "", insertinerid = "", insertindate = "", insertincount = "", insertinprice = "";
+                    insertbookid = bookid;
+                    Date date = new Date();
+                    SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy-MM-dd");
+                    insertindate = simpledateformat.format(date);
+                    insertinerid = inerid;
+                    insertincount = incount;
+                    insertinid = new SimpleDateFormat("yyyyMMddHHmmss").format(date) + insertinerid;
+                    while (rs.next()) {
+                        insertinprice = String.valueOf(rs.getFloat(6) * flocount);
+                        store= rs.getInt(8);
+                        JSONObject obj = new JSONObject();
+                        obj.put("statu", "t");
+                        //System.out.println(obj.toJSONString());
+                        result.add(obj);
+                    }
+
+                    String query2 = "insert into 进书单 values(" + "'" + insertinid + "'" + "," + "'" + insertbookid + "'" + "," + "'" + insertinerid + "'" + "," +
+                            "'" + insertindate + "'" + "," + insertincount + "," + insertinprice + ")";
+                    //System.out.println(query2);
+                    int res = statement.executeUpdate(query2);
+                    String query4 = "update 教材信息 set 库存="+(store+Integer.parseInt(incount))+" where 书号="+"'"+bookid+"'";
+                    int res4 = statement.executeUpdate(query4);
+                }
+            }
+        } catch (NumberFormatException e) {
+
+            JSONObject obj = new JSONObject();
+            obj.put("statu", "wc1");
+            System.out.println(obj.toJSONString());
+            result.add(obj);
+            return result;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
 }

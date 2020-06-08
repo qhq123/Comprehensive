@@ -68,17 +68,17 @@ function dolack() {
                     if(statu=="wn")
                     {
                         alert("不存在此书号！请重新输入");
-                        $("#a2num").val('');
+                        $("#b3num").val('');
                     }
                     else if(statu=="wc1")
                     {
                         alert("数量输入不规范！请重新输入");
-                        $("#a2count").val('');
+                        $("#b3count").val('');
                     }
                     else if(statu=="wc2")
                     {
                         alert("不允许输入非正数！");
-                        $("#a2count").val('');
+                        $("#b3count").val('');
                     }
                     else if(statu=="t")
                     {
