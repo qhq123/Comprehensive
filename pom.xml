@@ -65,7 +65,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.20</version>
 				<configuration>
-					<skipTests>true</skipTests>
 					<suiteXmlFiles>
 						<file>src/test/testXML/testng.xml</file>
 					</suiteXmlFiles>
@@ -73,5 +72,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
